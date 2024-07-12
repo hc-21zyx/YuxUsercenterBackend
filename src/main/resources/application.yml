@@ -4,7 +4,9 @@ spring:
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
-
+    #session失效时间
+    session:
+      timeout: 86400
 sever:
   port: 8080
 mybatis-plus:

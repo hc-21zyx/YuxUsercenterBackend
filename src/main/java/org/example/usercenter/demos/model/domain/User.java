@@ -60,6 +60,11 @@ public class User implements Serializable {
     private Integer userStatus;
 
     /**
+     * 状态 0 - 普通用户 1-管理员
+     */
+    private Integer userRole;
+
+    /**
      * 创建时间
      */
     private Date createTime;
