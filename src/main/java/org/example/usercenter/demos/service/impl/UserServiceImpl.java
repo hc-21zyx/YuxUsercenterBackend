@@ -127,12 +127,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public User getSafetyUser(User originuser) {
+        if (originuser == null) return null;
         User safetyUser = new User();
         safetyUser.setId(originuser.getId());
         safetyUser.setUsername(originuser.getUsername());
         safetyUser.setUserAccount(originuser.getUserAccount());
         safetyUser.setAvatarUrl(originuser.getAvatarUrl());
         safetyUser.setGender(originuser.getGender());
+        safetyUser.setUserPassword(null);
         safetyUser.setPhone(originuser.getPhone());
         safetyUser.setEmail(originuser.getEmail());
         safetyUser.setUserRole(originuser.getUserRole());
