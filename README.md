@@ -1,14 +1,17 @@
-# 用户中心管理项目(后端代码极其写的基本步骤)
+# 用户中心管理项目
 
+# 简介
+
+````
+一个很基础的管理系统,后端主要为CUDR的基本写法
+````
+
+# 技术栈
 ```
-技术栈Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro).
-项目简介:该项目为一个后台管理员管理登录账户的一个平台,整体后端用SpringBoot搭建,数据库用mysql进行管理,前端采用Ant Desgin Pro创建.
-主要的功能为：支持管理员对普通用户的管理功能.
+Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro).
 ```
 
-```
-项目生成的步骤(后端代码)
-```
+# 项目生成的步骤(后端代码)
 
 ```
 分层开发的思想
