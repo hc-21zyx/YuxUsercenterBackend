@@ -2,23 +2,34 @@
 
 # 简介
 
-````
+```
 一个很基础的管理系统,后端主要为CUDR的基本写法
-````
+```
 
 # 技术栈
+
 ```
 Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro).
 ```
 
-# 项目生成的步骤(后端代码)
+# 分层开发
 
 ```
-分层开发的思想
 model(pojo):映射当前数据库的字段 名称要一一对应
 Mapper:定义对数据库的操作 (一般情况可以直接继承BaseMapper<数据库的名称>来获得CUDR的基本操作方法)
 Service:实现具体的业务逻辑
 Controller:将所有的业务封装成一个可以访问的接口,使得前端再访问这个接口时会执行相对应的业务操作
+```
+
+# 项目生成的步骤(后端代码)
+
+# 生成 Project
+
+```
+使用IDEA工具直接选择新建项目模块,构建工具选择Maven,Java语言选择8或者稍微高一点的版本
+初始依赖选择Lombock(注解工具自动生成get set之类的方法) SpringBoot DevTools(修改完代码后自动重启入口)
+SpringConfiguration Processer(读取属性文件) Mysql Driver(数据库的驱动) Mybatis Driver(数据库操作的驱动)<暂时用不到redis>
+Spring Web (为项目提供一个可以Web访问的一个地址)<使用的是本地的端口>
 ```
 
 ```
