@@ -37,7 +37,6 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount,userPassword,checkPassword)) {
             return null;
         }
-
         return userService.userRegister(userAccount,userPassword,checkPassword);
      }
 

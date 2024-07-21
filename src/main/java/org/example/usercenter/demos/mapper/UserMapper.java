@@ -10,6 +10,7 @@ import org.example.usercenter.demos.model.domain.User;
 * @createDate 2024-07-10 13:30:50
 * @Entity generator.domain.user
 */
+
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
