@@ -45,5 +45,6 @@ Spring Web (为项目提供一个可以Web访问的一个地址)<使用的是本
 # 补充
 
 ```
+再创建项目时,一定要选择那个比较旧的版本
 Java17之后以及包括Java17不在支持StringUtils.isAllBlank判断空格的API
 ```
