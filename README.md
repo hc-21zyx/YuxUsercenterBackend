@@ -1,4 +1,4 @@
-# 用户中心管理项目
+# 鱼泡-伙伴匹配系统
 
 # 简介
 
@@ -9,7 +9,7 @@
 # 主要技术栈
 
 ```
-Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro).
+Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro). + redis缓存
 ```
 
 # 分层开发

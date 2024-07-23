@@ -75,7 +75,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = new User();
         user.setUserAccount(userAccount);
         user.setUserPassword(encryptPassword);
-
+        //不仅能够插入,还能返回插入是否成功
         boolean saveResult = this.save(user);
 
         if (!saveResult) {
