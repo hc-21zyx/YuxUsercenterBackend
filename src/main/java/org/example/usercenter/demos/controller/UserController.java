@@ -55,8 +55,8 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount,userPassword)) {
             return null;
         }
-
-        return null;
+        User user = userService.userLogin(userAccount,userPassword,request);
+        return ResultUtils.success(user);
     }
 
     @PostMapping("/logout")
