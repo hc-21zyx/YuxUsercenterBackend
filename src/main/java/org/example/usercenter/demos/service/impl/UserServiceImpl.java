@@ -1,5 +1,4 @@
 package org.example.usercenter.demos.service.impl;
-import java.util.Date;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -33,20 +32,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     //盐值
     private static final String SALT = "yupi";
+
     /**
      * 用户登录态建
      */
     //private static final String USER_LOGIN_STATE = "userloginstate";
 
     @Override
-    public long userRegister(String userAccount, String userPassword, String checkPassword) {
-        if (StringUtils.isAllBlank(userAccount,userPassword,checkPassword)) {
+    public long userRegister(String userAccount, String userPassword, String checkPassword, String planetCode) {
+        if (StringUtils.isAllBlank(userAccount,userPassword,checkPassword,planetCode)) {
             return -1;
         }
         if (userAccount.length() < 4) {
             return -1;
         }
         if (userPassword.length() < 8 || checkPassword.length() < 8) {
+            return -1;
+        }
+        if (planetCode.length() > 5) {
             return -1;
         }
         //账户不能包含特殊字符
@@ -62,7 +65,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //账户不能重复
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userAccount",userAccount);
-        long count = this.count(queryWrapper);
+        long count = userMapper.selectCount(queryWrapper);
+
+        if (count > 0) {
+            return -1;
+        }
+        // 星球编号不能重复
+        queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("planetCode",planetCode);
+        count = userMapper.selectCount(queryWrapper);
 
         if (count > 0) {
             return -1;
@@ -75,9 +86,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = new User();
         user.setUserAccount(userAccount);
         user.setUserPassword(encryptPassword);
+        user.setPlanetCode(planetCode);
 
+        //不仅能够插入,还能返回插入是否成功
         boolean saveResult = this.save(user);
-
         if (!saveResult) {
             return -1;
         }
@@ -142,6 +154,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         safetyUser.setUserRole(originuser.getUserRole());
         safetyUser.setUserStatus(originuser.getUserStatus());
         safetyUser.setCreateTime(originuser.getCreateTime());
+        safetyUser.setPlanetCode(originuser.getPlanetCode());
         return safetyUser;
     }
 

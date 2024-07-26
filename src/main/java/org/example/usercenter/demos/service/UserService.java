@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.example.usercenter.demos.model.domain.User;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author rainsXZ
@@ -11,17 +12,18 @@ import javax.servlet.http.HttpServletRequest;
  * @createDate 2024-07-10 13:30:50
  */
 public interface UserService extends IService<User> {
-//    /**
-//     *
-//     */
-//    String USER_LOGIN_STATE = "userLoginState";
+    /**
+     *
+     */
+    String USER_LOGIN_STATE = "userLoginState";
     /**
      * @param userAccount   用户账户
      * @param userPassword  密码
      * @param checkPassword 验证密码
      * @return 新用户id
      */
-    long userRegister(String userAccount, String userPassword, String checkPassword);
+
+    long userRegister(String userAccount, String userPassword, String checkPassword, String planetCode);
 
     /**
      *
@@ -33,5 +35,10 @@ public interface UserService extends IService<User> {
 
     User getSafetyUser(User orginUser);
 
+    /**
+     * 用户注销
+     * @param request
+     * @return
+     */
     int userLogout(HttpServletRequest request);
 }

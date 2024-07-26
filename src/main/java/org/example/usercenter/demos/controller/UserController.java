@@ -2,6 +2,7 @@ package org.example.usercenter.demos.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
+import org.example.usercenter.demos.common.BaseResponse;
 import org.example.usercenter.demos.model.domain.User;
 import org.example.usercenter.demos.model.domain.request.UserLoginRequest;
 import org.example.usercenter.demos.model.domain.request.UserRegisterRequest;
@@ -25,7 +26,7 @@ public class UserController {
      private UserService userService;
 
      @PostMapping("/register")
-     public Long userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
+     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         if (userRegisterRequest == null) {
             return null;
         }
@@ -33,15 +34,16 @@ public class UserController {
         String userAccount = userRegisterRequest.getUserAccount();
         String userPassword = userRegisterRequest.getUserPassword();
         String checkPassword = userRegisterRequest.getCheckPassword();
-
+        String planetCode = userRegisterRequest.getPlanetCode();
         if (StringUtils.isAnyBlank(userAccount,userPassword,checkPassword)) {
             return null;
         }
-        return userService.userRegister(userAccount,userPassword,checkPassword);
+        long result = userService.userRegister(userAccount,userPassword,checkPassword,planetCode);
+        return new BaseResponse<>(0,result,"ok");
      }
 
      @PostMapping("/login")
-     public User userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+     public BaseResponse<User> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             return null;
         }
