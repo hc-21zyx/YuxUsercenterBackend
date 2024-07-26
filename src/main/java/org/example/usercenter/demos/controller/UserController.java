@@ -3,6 +3,7 @@ package org.example.usercenter.demos.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.example.usercenter.demos.common.BaseResponse;
+import org.example.usercenter.demos.common.ResultUtils;
 import org.example.usercenter.demos.model.domain.User;
 import org.example.usercenter.demos.model.domain.request.UserLoginRequest;
 import org.example.usercenter.demos.model.domain.request.UserRegisterRequest;
@@ -39,7 +40,7 @@ public class UserController {
             return null;
         }
         long result = userService.userRegister(userAccount,userPassword,checkPassword,planetCode);
-        return new BaseResponse<>(0,result,"ok");
+        return ResultUtils.success(result);
      }
 
      @PostMapping("/login")
@@ -55,7 +56,7 @@ public class UserController {
             return null;
         }
 
-        return userService.userLogin(userAccount,userPassword,request);
+        return null;
     }
 
     @PostMapping("/logout")
