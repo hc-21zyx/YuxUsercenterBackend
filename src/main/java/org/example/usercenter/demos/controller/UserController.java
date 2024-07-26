@@ -60,11 +60,12 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public Integer userLogout(HttpServletRequest request) {
+    public BaseResponse<Integer> userLogout(HttpServletRequest request) {
         if (request == null) {
             return null;
         }
-        return userService.userLogout(request);
+        int result =  userService.userLogout(request);
+        return ResultUtils.success(result);
     }
 
     @GetMapping("/search")
