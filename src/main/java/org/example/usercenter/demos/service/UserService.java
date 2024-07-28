@@ -15,7 +15,7 @@ public interface UserService extends IService<User> {
     /**
      *
      */
-    String USER_LOGIN_STATE = "userLoginState";
+//    String USER_LOGIN_STATE = "userLoginState";
     /**
      * @param userAccount   用户账户
      * @param userPassword  密码
