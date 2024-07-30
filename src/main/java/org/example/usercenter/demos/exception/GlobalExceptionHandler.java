@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 @Slf4j
+
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
@@ -22,7 +23,6 @@ public class GlobalExceptionHandler {
         log.error("businessException: " + e.getMessage(), e);
         return ResultUtils.error(e.getCode(), e.getMessage(), e.getDescription());
     }
-
     //https://github.com/liyupi
 
     @ExceptionHandler(RuntimeException.class)
