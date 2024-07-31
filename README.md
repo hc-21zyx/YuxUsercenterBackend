@@ -3,13 +3,13 @@
 # 简介
 
 ```
-一个很基础的管理系统,支持注册登录,查询功能(后端具有注销,删除,等接口)
+一个很基础的用户管理系统,支持注册登录,查询功能(后端具有注销,删除,等接口)
 ```
 
 # 主要技术栈
 
 ```
-Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro). + redis缓存
+Mybatis + Mysql + MybatisPlus + SpringMVC + SpringBoot + React(AntDesginPro)
 ```
 
 # 分层开发
@@ -48,3 +48,7 @@ Spring Web (为项目提供一个可以Web访问的一个地址)<使用的是本
 再创建项目时,一定要选择那个比较旧的版本
 Java17之后以及包括Java17不在支持StringUtils.isAllBlank判断空格的API
 ```
+
+# 主要技术栈
+
+项目部署的服务器地址 134.175.228.70

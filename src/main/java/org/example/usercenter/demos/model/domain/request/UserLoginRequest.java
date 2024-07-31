@@ -3,6 +3,9 @@ package org.example.usercenter.demos.model.domain.request;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 用户注册请求体
