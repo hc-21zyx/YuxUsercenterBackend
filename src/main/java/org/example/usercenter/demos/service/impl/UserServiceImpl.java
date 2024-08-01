@@ -2,19 +2,27 @@ package org.example.usercenter.demos.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.example.usercenter.demos.common.ErrorCode;
+import org.example.usercenter.demos.exception.BusinessException;
 import org.example.usercenter.demos.mapper.UserMapper;
 import org.example.usercenter.demos.model.domain.User;
 import org.example.usercenter.demos.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static org.example.usercenter.demos.contant.UserConstant.USER_LOGIN_STATE;
 
@@ -156,6 +164,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         safetyUser.setUserStatus(originuser.getUserStatus());
         safetyUser.setCreateTime(originuser.getCreateTime());
         safetyUser.setPlanetCode(originuser.getPlanetCode());
+        safetyUser.setTags(originuser.getTags());
         return safetyUser;
     }
 
@@ -167,6 +176,41 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public int userLogout(HttpServletRequest request) {
         request.getSession().removeAttribute(USER_LOGIN_STATE);
         return 1;
+    }
+
+    /**
+     * 查询用户标签
+     * @param tagNameList
+     * @return List<User>
+     */
+    @Override
+    public List<User> searchUsersByTags(List<String> tagNameList) {
+        if (CollectionUtils.isEmpty(tagNameList)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        for (String tagName:tagNameList) {
+//            queryWrapper.like("tags",tagName);
+//        }
+//
+        List<User> userList = userMapper.selectList(queryWrapper);
+//        return userList.stream().map(this::getSafetyUser).collect(Collectors.toList());
+
+        Gson gson = new Gson();
+         return userList.stream().filter(user -> {
+            String tagStr = user.getTags();
+            if (StringUtils.isBlank(tagStr)) {
+                return false;
+            }
+            Set<String> tempTagNameSet = gson.fromJson(tagStr,new TypeToken<Set<String>>(){}.getType());
+            for (String tagName:tagNameList) {
+                if (!tempTagNameSet.contains(tagName)) {
+                    return false;
+                }
+            }
+            return true;
+        }).map(this::getSafetyUser).collect(Collectors.toList());
     }
 }
 

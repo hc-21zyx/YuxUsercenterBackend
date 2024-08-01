@@ -1,10 +1,14 @@
 package org.example.usercenter.demos.service;
 
+import org.example.usercenter.demos.model.domain.User;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -13,7 +17,18 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    void userRegister() {
+    void contextLoads() {
+    }
+
+    @Test
+    void searchUsersByTags() {
+        List<String> tagNameList = Arrays.asList("Java","python","C++","kun");
+        List<User> userlist = userService.searchUsersByTags(tagNameList);
+        Assert.assertNotNull(userlist);
+    }
+}
+//    @Test
+//    void userRegister() {
 //        String userAccount = "yushang";
 //        String userPassword = "";
 //        String checkPassword = "123456";
@@ -45,5 +60,4 @@ public class UserServiceTest {
 //        userAccount = "dogYupigggg";
 //        result = userService.userRegister(userAccount,userPassword,checkPassword,planetCode);
 //        Assertions.assertEquals(-1,result);
-    }
-}
+//    }
