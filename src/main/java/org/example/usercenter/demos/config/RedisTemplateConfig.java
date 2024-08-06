@@ -1,4 +1,5 @@
 package org.example.usercenter.demos.config;
 
-public class WebMvcConfig {
+public class RedisTemplateConfig {
+
 }
