@@ -42,13 +42,13 @@ Spring Web (为项目提供一个可以Web访问的一个地址)<使用的是本
 6.封装完之后,通过IDEA中的/工具/HTTp客户端/第一个会话 来进行测试
 ```
 
-# 补充
+# 容易犯的错误
 
 ```
-再创建项目时,一定要选择那个比较旧的版本
-Java17之后以及包括Java17不在支持StringUtils.isAllBlank判断空格的API
+再创建项目时,尽量选择那个比较旧的版本(Java 8),使用StringUtils工具类时,要在pom.xml文件中引入commons - lang依赖
+在使用mybatis插件时要注意记得勾选哪个Actual什么的,去掉那个String注解那一项,然后记得引入mybatis-plus依赖 (直接在Maven仓库中搜索就可以了),同时也要配置yml文件
 ```
 
-# 主要技术栈
+# 访问地址（暂时）
 
 项目部署的服务器地址 134.175.228.70
