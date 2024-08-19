@@ -45,10 +45,12 @@ Spring Web (为项目提供一个可以Web访问的一个地址)<使用的是本
 # 容易犯的错误
 
 ```
-再创建项目时,尽量选择那个比较旧的版本(Java 8),使用StringUtils工具类时,要在pom.xml文件中引入commons - lang依赖
-在使用mybatis插件时要注意记得勾选哪个Actual什么的,去掉那个String注解那一项,然后记得引入mybatis-plus依赖 (直接在Maven仓库中搜索就可以了),同时也要配置yml文件
+
+* 再创建项目时,尽量选择那个比较旧的版本(Java 8),使用StringUtils工具类时,要在pom.xml文件中引入commons - lang依赖
+* 在使用mybatis插件时要注意记得勾选哪个Actual什么的,去掉那个String注解那一项,然后记得引入mybatis-plus依赖 (直接在Maven仓库中搜索就可以了),同时也要配置yml文件
+
 ```
 
 # 访问地址（暂时）
 
-项目部署的服务器地址 134.175.228.70
+项目部署的服务器地址 [134.175.228.70](134.175.228.70)
